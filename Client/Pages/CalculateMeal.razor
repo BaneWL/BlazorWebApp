@@ -1,0 +1,79 @@
+﻿@page "/calculatemeal"
+
+<h1>Calculate Meal Cost</h1>
+
+<p>Input Cost </p>
+
+<input @bind="InputMealCost "/>
+
+<p>Input Tip Rate (As Decimal)</p>
+
+<input @bind="InputTipRate "/>
+
+<button class="btn btn-primary" @onclick="DoCalculation">Calculate</button>
+
+<p>Output: $@OutputCost </p>
+
+@code
+
+{
+
+    private string InputMealCost { get; set; }
+
+    private string InputTipRate { get; set; }
+
+    private string OutputCost { get; set; }
+
+    private void DoCalculation()
+
+    {
+        double taxRateFL = .06;
+        double meal = double.Parse(InputMealCost);
+        double tip = double.Parse(InputTipRate);
+        double num = meal + (meal*tip);
+        num = num + (num*taxRateFL);
+
+        OutputCost = num.ToString();
+
+    }
+
+}
+
+@*<h1>Calculate Meal Cost</h1>
+
+<p>Input Cost </p>
+
+<input @bind="InputMealCost "/>
+
+<p>Input Tip (As Decimal)</p>
+
+<input @bind="InputTipRate "/>
+
+<button class="btn btn-primary" @onclick="DoCalculation">Calculate</button>
+
+<p>Output: $@OutputCost </p>
+
+@code
+
+{
+
+    private string InputMealCost { get; set; }
+
+    private string InputTipRate { get; set; }
+
+    private string OutputCost { get; set; }
+
+    private void DoCalculation()
+
+    {
+        private double taxRateFL = .06;
+        double meal = double.Parse(InputMealCost);
+        double tip = double.Parse(InputTipRate);
+        double num = meal + (meal*tip);
+        num = num + (num*taxRateFL);
+        Math.Round(num, 2);
+        double num = 5;
+        OutputCost = num.ToString();
+    }
+
+}*@
